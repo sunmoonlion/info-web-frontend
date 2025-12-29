@@ -5,7 +5,7 @@ import { forwardToBackend, handleBackendError } from '../../utils/backend'
 /**
  * 登录 API - Nuxt 服务器端路由
  * 路径：POST /api/users/login
- * 改造：使用 auth-app-bff 的 /login/oauth 接口，返回用户信息（不再返回 Token）
+ * 改造：使用 auth-app-backend 的 /login/oauth 接口，返回用户信息（不再返回 Token）
  */
 export default defineEventHandler(async (event: any) => {
   try {
@@ -20,11 +20,11 @@ export default defineEventHandler(async (event: any) => {
       })
     }
     
-    // 改造：调用 auth-app-bff 的登录接口（使用 Cookie 认证）
+    // 改造：调用 auth-app-backend 的登录接口（使用 Cookie 认证）
     const config = useRuntimeConfig(event)
     const authServiceUrl = config.authServiceUrl || 'http://localhost:3030'
     
-    // 转发请求到 auth-app-bff
+    // 转发请求到 auth-app-backend
     const response = await $fetch(`${authServiceUrl}/api/v1/login/oauth`, {
       method: 'POST',
       headers: {
@@ -38,7 +38,7 @@ export default defineEventHandler(async (event: any) => {
     })
     
     // 改造：返回用户信息（不再返回 Token）
-    // auth-app-bff 会设置 Cookie，这里只返回用户信息
+    // auth-app-backend 会设置 Cookie，这里只返回用户信息
     return {
       userName: response.email || response.username || body.userName,
       userId: response.id || null,

@@ -21,7 +21,7 @@ export default withNuxt(
   },
   {
     name: 'app/files-to-ignore',
-    ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**']
+    ignores: ['**/dist/**', '**/dist-frontend/**', '**/coverage/**']
   },
   
   // 合并 Vue 配置

@@ -13,13 +13,13 @@ export default defineNuxtConfig({
       backendApiUrl: process.env.BACKEND_API_URL || 'http://47.100.19.119',
       // 认证服务 URL（用于 Cookie 认证）
       authServiceUrl: process.env.AUTH_SERVICE_URL || 'http://localhost:3030',
-      // BFF URL（用于 SSR 中间件，指向 investment-app-bff）
+      // Backend URL（用于 SSR 中间件，指向 investment-app-backend）
       // 开发环境：http://localhost:8000（FastAPI 默认端口）
-      // 生产环境：http://investment-app-bff:8000（K8s 服务名称）
-      bffUrl: process.env.VUE_APP_BFF_URL || process.env.INVESTMENT_BFF_URL || 'http://localhost:8000',
+      // 生产环境：http://investment-app-backend:8000（K8s 服务名称）
+      backendUrl: process.env.VUE_APP_BACKEND_URL || process.env.INVESTMENT_BACKEND_URL || 'http://localhost:8000',
       // API 版本号（可选，默认为 v1）
       apiVersion: process.env.VUE_APP_API_VERSION || 'v1',
-      // Session Cookie 名称（必须与 auth-app-bff 一致）
+      // Session Cookie 名称（必须与 auth-app-backend 一致）
       sessionCookieName: process.env.SESSION_COOKIE_NAME || 'sunmoonai_session',
     }
   },

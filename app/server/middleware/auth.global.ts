@@ -13,7 +13,7 @@ declare module 'h3' {
   }
 }
 
-// 短时间缓存用户信息（减少 BFF 调用）
+// 短时间缓存用户信息（减少 后端调用）
 const userCache = new Map<string, { user: any; expires: number }>()
 const CACHE_TTL = 5000 // 5秒缓存
 
@@ -58,12 +58,12 @@ export default defineEventHandler(async (event) => {
     return
   }
 
-  // 调用业务BFF的 /auth/me 接口（业务BFF会转发Cookie到auth-app-bff）
+  // 调用业务后端的 /auth/me 接口（业务后端会转发Cookie到auth-app-backend）
   try {
-    // 业务BFF地址（应该从配置中获取）
-    const bffUrl = config.public.bffUrl || config.bffUrl || 'http://localhost:8000'
+    // 业务后端地址（应该从配置中获取）
+    const backendUrl = config.public.backendUrl || config.backendUrl || 'http://localhost:8000'
     const apiVersion = config.public.apiVersion || 'v1'
-    const user = await $fetch(`${bffUrl}/api/${apiVersion}/auth/me`, {
+    const user = await $fetch(`${backendUrl}/api/${apiVersion}/auth/me`, {
       headers: {
         cookie: `${sessionCookieName}=${sessionId}`, // 转发 Cookie
       },

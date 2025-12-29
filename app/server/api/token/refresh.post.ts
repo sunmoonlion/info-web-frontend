@@ -3,10 +3,10 @@
  * 路径：POST /api/token/refresh
  * 
  * 改造：已废弃，使用 Session + Cookie 认证，不再需要刷新 Token
- * 保留此接口用于兼容，但实际应该调用 auth-app-bff 的 /auth/me 接口
+ * 保留此接口用于兼容，但实际应该调用 auth-app-backend 的 /auth/me 接口
  */
 export default defineEventHandler(async (event: any) => {
-  // 改造：不再刷新 Token，而是从 auth-app-bff 获取用户信息
+  // 改造：不再刷新 Token，而是从 auth-app-backend 获取用户信息
   const config = useRuntimeConfig(event)
   const authServiceUrl = config.authServiceUrl || 'http://localhost:3030'
   const cookies = parseCookies(event)
@@ -21,7 +21,7 @@ export default defineEventHandler(async (event: any) => {
   }
 
   try {
-    // 调用 auth-app-bff 的 /auth/me 接口获取用户信息
+    // 调用 auth-app-backend 的 /auth/me 接口获取用户信息
     const user = await $fetch(`${authServiceUrl}/api/v1/auth/me`, {
       headers: {
         cookie: `${sessionCookieName}=${sessionId}`,
