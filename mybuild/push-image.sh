@@ -45,24 +45,24 @@ log_info "加载构建配置: $BUILD_CONF"
 source "$BUILD_CONF"
 
 # 自动检测镜像配置变量名
-# 支持多种命名格式：INVESTMENT_BFF_IMAGE, LLMOPS_BFF_IMAGE, BACKEND_IMAGE, INVESTMENT_SSR_IMAGE, LLMOPS_SSR_IMAGE 等
+# 支持多种命名格式：TPL_BFF_IMAGE, LLMOPS_BFF_IMAGE, BACKEND_IMAGE, TPL_SSR_IMAGE, LLMOPS_SSR_IMAGE 等
 detect_image_config() {
     # 尝试常见的变量名模式
-    if [ -n "${INVESTMENT_BFF_IMAGE:-}" ]; then
-        IMAGE_VAR="INVESTMENT_BFF_IMAGE"
-        TAG_VAR="INVESTMENT_BFF_TAG"
-        REGISTRY_VAR="INVESTMENT_BFF_IMAGE_REGISTRY"
-        PROJECT_VAR="INVESTMENT_BFF_IMAGE_PROJECT"
+    if [ -n "${TPL_BFF_IMAGE:-}" ]; then
+        IMAGE_VAR="TPL_BFF_IMAGE"
+        TAG_VAR="TPL_BFF_TAG"
+        REGISTRY_VAR="TPL_BFF_IMAGE_REGISTRY"
+        PROJECT_VAR="TPL_BFF_IMAGE_PROJECT"
     elif [ -n "${LLMOPS_BFF_IMAGE:-}" ]; then
         IMAGE_VAR="LLMOPS_BFF_IMAGE"
         TAG_VAR="LLMOPS_BFF_TAG"
         REGISTRY_VAR="LLMOPS_BFF_IMAGE_REGISTRY"
         PROJECT_VAR="LLMOPS_BFF_IMAGE_PROJECT"
-    elif [ -n "${INVESTMENT_SSR_IMAGE:-}" ]; then
-        IMAGE_VAR="INVESTMENT_SSR_IMAGE"
-        TAG_VAR="INVESTMENT_SSR_TAG"
-        REGISTRY_VAR="INVESTMENT_SSR_IMAGE_REGISTRY"
-        PROJECT_VAR="INVESTMENT_SSR_IMAGE_PROJECT"
+    elif [ -n "${TPL_SSR_IMAGE:-}" ]; then
+        IMAGE_VAR="TPL_SSR_IMAGE"
+        TAG_VAR="TPL_SSR_TAG"
+        REGISTRY_VAR="TPL_SSR_IMAGE_REGISTRY"
+        PROJECT_VAR="TPL_SSR_IMAGE_PROJECT"
     elif [ -n "${LLMOPS_SSR_IMAGE:-}" ]; then
         IMAGE_VAR="LLMOPS_SSR_IMAGE"
         TAG_VAR="LLMOPS_SSR_TAG"
@@ -75,8 +75,8 @@ detect_image_config() {
         PROJECT_VAR="BACKEND_IMAGE_PROJECT"
     else
         log_error "无法检测镜像配置变量，请确保 build.conf 中包含以下变量之一："
-        log_error "  - INVESTMENT_BFF_IMAGE / LLMOPS_BFF_IMAGE / BACKEND_IMAGE"
-        log_error "  - INVESTMENT_SSR_IMAGE / LLMOPS_SSR_IMAGE"
+        log_error "  - TPL_BFF_IMAGE / LLMOPS_BFF_IMAGE / BACKEND_IMAGE"
+        log_error "  - TPL_SSR_IMAGE / LLMOPS_SSR_IMAGE"
         exit 1
     fi
     

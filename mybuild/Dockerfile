@@ -34,7 +34,7 @@ FROM node:20.18.0 AS build
 # 如果需要代理，可以通过 --build-arg 传递：
 #   docker build --build-arg HTTP_PROXY=http://proxy.example.com:8080 \
 #                --build-arg HTTPS_PROXY=http://proxy.example.com:8080 \
-#                -f mybuild/Dockerfile -t investment-app-ssr:1.0.0 .
+#                -f mybuild/Dockerfile -t tpl-app-ssr:1.0.0 .
 # ============================================================================
 ARG HTTP_PROXY
 ARG HTTPS_PROXY
@@ -78,9 +78,9 @@ ENV NODE_ENV=development \
 # ============================================================================
 # 构建上下文说明
 # ============================================================================
-# 构建上下文：项目根目录（investment-app-ssr/）
+# 构建上下文：项目根目录（tpl-app-ssr/）
 # Dockerfile 位置：mybuild/Dockerfile
-# 构建命令：docker build -f mybuild/Dockerfile -t investment-app-ssr:1.0.0 .
+# 构建命令：docker build -f mybuild/Dockerfile -t tpl-app-ssr:1.0.0 .
 #
 # 重要说明：
 # - Docker 的 COPY 指令只能访问构建上下文内的文件
