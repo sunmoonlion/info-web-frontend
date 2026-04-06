@@ -45,7 +45,7 @@ else
 fi
 
 # 镜像配置（从 build.conf 读取）
-INVESTMENT_SSR_IMAGE="${INVESTMENT_SSR_IMAGE:-investment-app-frontend}"
+INVESTMENT_SSR_IMAGE="${INVESTMENT_SSR_IMAGE:-investment-web-frontend}"
 INVESTMENT_SSR_TAG="${INVESTMENT_SSR_TAG:-1.0.0}"
 
 # 镜像仓库配置（从 build.conf 读取）
