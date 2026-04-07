@@ -12,8 +12,8 @@ SSR 镜像构建采用直接使用源代码的方式：
 ## 文件说明
 
 ### Dockerfile
-SSR 镜像构建文件，基于 `node:18.17` 镜像，使用多阶段构建：
-- `build` 阶段：构建 Nuxt.js 应用
+SSR 镜像构建文件，基于 `node:20.18` 镜像，使用多阶段构建：
+- `build` 阶段：构建 Next.js 应用（`pnpm build`）
 - `run-dev` 阶段：开发环境运行
 - `run-start` 阶段：生产环境运行
 - `run-minimal` 阶段：最小化生产镜像

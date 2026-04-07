@@ -70,10 +70,7 @@ RUN corepack enable && corepack prepare pnpm@9.12.3 --activate
 # 设置环境变量
 # 注意：不强制从源码编译 sharp，使用预编译二进制更可靠
 ENV NODE_ENV=development \
-    APP_ENV=development \
-    NITRO_HOST=0.0.0.0 \
-    NITRO_PORT=3000 \
-    NUXT_TELEMETRY_DISABLED=1
+    APP_ENV=development
 
 # ============================================================================
 # 构建上下文说明
@@ -101,7 +98,7 @@ RUN rm -rf node_modules 2>/dev/null || true
 # 使用预编译的 sharp 二进制文件（更可靠）
 RUN pnpm install --frozen-lockfile || \
     pnpm install
-# 构建应用
+# 构建应用（需 next.config 中 output: 'standalone'）
 RUN pnpm build
 EXPOSE 3000
 
@@ -145,18 +142,22 @@ ENV HTTP_PROXY=${HTTP_PROXY} \
 # Sharp 图像处理库依赖：
 # - Build 阶段（Debian）：需要 libvips-dev（开发版本，包含头文件）用于编译
 # - Run 阶段（Alpine）：只需要 vips（运行时版本，体积更小）
-# - 注意：如果 Nuxt 的 .output 已包含所有运行时依赖（standalone 模式），
-#   可能不需要额外安装 vips，但为了确保兼容性，建议保留
+# - 注意：Next.js `output: 'standalone'` 的 server bundle 已包含大部分依赖；
+#   若 sharp 仍需要系统 vips，建议保留 apk 中的 vips
 # ============================================================================
-RUN apk add --no-cache \
-    vips \
-    && (npm install -g yarn@1.22.22 --force || yarn --version || true)
-ENV NODE_ENV=production APP_ENV=production NITRO_HOST=0.0.0.0 NITRO_PORT=3000 NUXT_TELEMETRY_DISABLED=1
-WORKDIR /frontend
-# 只复制构建输出（.output 目录包含所有构建产物和运行时依赖）
-# Nuxt 的生产构建已经包含了所有必要的运行时依赖
-COPY --from=build /frontend/.output ./.output
-# 直接使用 node 运行，不需要 pnpm
-ENTRYPOINT [ "node" ]
-CMD [ ".output/server/index.mjs" ]
+RUN apk add --no-cache vips
 
+WORKDIR /app
+ENV NODE_ENV=production \
+    APP_ENV=production \
+    HOSTNAME=0.0.0.0 \
+    PORT=3000
+
+# Next.js standalone：需 next.config 中 output: 'standalone'
+COPY --from=build /frontend/public ./public
+COPY --from=build /frontend/.next/standalone ./
+COPY --from=build /frontend/.next/static ./.next/static
+
+EXPOSE 3000
+ENTRYPOINT ["node"]
+CMD ["server.js"]
