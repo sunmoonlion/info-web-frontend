@@ -4,7 +4,7 @@ import { locales, defaultLocale } from './i18n'
 export default createMiddleware({
   locales,
   defaultLocale,
-  localePrefix: 'as-needed', // zh-CN 不加前缀，en 加 /en 前缀
+  localePrefix: 'always', // 所有 locale 都显示前缀: /zh-CN/... 和 /en/...
 })
 
 export const config = {
