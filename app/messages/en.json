@@ -16,7 +16,10 @@
     "username": "Username",
     "password": "Password",
     "loginTitle": "Welcome back",
-    "loginSubtitle": "Enter your credentials to continue"
+    "loginSubtitle": "Enter your credentials to continue",
+    "errorAuthFailed": "Sign-in could not finish (token exchange failed). Check backend logs for Casdoor/Redis errors and ensure the redirect URI in Casdoor matches CASDOOR_REDIRECT_URI exactly.",
+    "errorNoCode": "No authorization code was returned. Click Login again from this page.",
+    "errorOAuthGeneric": "Authorization was denied or cancelled. Please try again."
   },
   "nav": {
     "home": "Home",

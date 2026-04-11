@@ -18,8 +18,7 @@ request.interceptors.response.use(
   (error) => {
     const status = error.response?.status
     if (status === 401) {
-      // session 过期，跳转登录
-      window.location.href = '/login'
+      window.location.href = '/zh-CN/login'
     }
     return Promise.reject(error)
   },

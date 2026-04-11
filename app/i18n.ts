@@ -1,8 +1,11 @@
 import { getRequestConfig } from 'next-intl/server'
+import { routing } from './i18n/routing'
 
-export const locales = ['en', 'zh-CN'] as const
+export const locales = routing.locales
 export type Locale = (typeof locales)[number]
-export const defaultLocale: Locale = 'zh-CN'
+export const defaultLocale = routing.defaultLocale
+
+export { routing }
 
 export default getRequestConfig(async ({ requestLocale }) => {
   let locale = await requestLocale

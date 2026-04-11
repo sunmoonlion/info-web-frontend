@@ -16,7 +16,10 @@
     "username": "用户名",
     "password": "密码",
     "loginTitle": "欢迎回来",
-    "loginSubtitle": "请输入账号密码继续"
+    "loginSubtitle": "请输入账号密码继续",
+    "errorAuthFailed": "登录未完成（与身份服务交换令牌失败）。若持续出现，请查看后端日志中的 Casdoor/Redis 报错，并确认 Casdoor 应用中的回调地址与 CASDOOR_REDIRECT_URI 完全一致。",
+    "errorNoCode": "未收到授权码，请从本页重新点击登录。",
+    "errorOAuthGeneric": "授权被拒绝或已取消，请重试。"
   },
   "nav": {
     "home": "首页",
