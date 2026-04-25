@@ -98,6 +98,19 @@ PUSH_IMAGES_AFTER_BUILD="${PUSH_IMAGES_AFTER_BUILD:-false}"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 SOURCE_DIR="${SOURCE_DIR:-app}"
 
+ensure_base_image() {
+    local public_image="$1"
+    local harbor_image="${REGISTRY}/${public_image}"
+    log_info "检查基础镜像: ${harbor_image}"
+    if $RUNTIME_CMD pull "${harbor_image}" > /dev/null 2>&1; then
+        log_info "基础镜像已就绪: ${harbor_image}"
+    else
+        log_error "Harbor 中不存在基础镜像: ${harbor_image}"
+        log_error "请先将该镜像推送到 Harbor，参考 k8s 目录下的镜像推送脚本"
+        exit 1
+    fi
+}
+
 # 检查源代码目录
 if [ ! -d "$PROJECT_ROOT/$SOURCE_DIR" ]; then
     log_error "源代码目录不存在: $PROJECT_ROOT/$SOURCE_DIR"
@@ -123,6 +136,7 @@ build_image() {
     # 构建镜像（构建上下文是项目根目录，Dockerfile 在 mybuild/ 目录）
     $RUNTIME_CMD build -f "$SCRIPT_DIR/$DOCKERFILE" \
         -t "${TPL_SSR_IMAGE}:${TPL_SSR_TAG}" \
+        --build-arg REGISTRY="${REGISTRY:-harbor.sunmoonai.com:30443/k8s-images}" \
         .
     
     if [ $? -eq 0 ]; then
@@ -188,8 +202,8 @@ push_image() {
 main() {
     log_info "Tpl App SSR 镜像构建脚本启动"
     log_info "推送配置: PUSH_IMAGES_AFTER_BUILD=${PUSH_IMAGES_AFTER_BUILD}"
-    
-    # 执行构建（根据配置决定是否推送）
+    ensure_base_image "node:20.18.0"
+    ensure_base_image "node:20.18.0-alpine"
     build_image
 }
 

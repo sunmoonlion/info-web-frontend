@@ -25,7 +25,13 @@
 # - Docker 构建时：使用 FROM node:20.18.0，确保版本一致
 # 
 # 注意：使用 node:20 会拉取最新版本（如 20.19.6），可能导致不一致
-FROM node:20.18.0 AS build
+#
+# REGISTRY 默认指向 Harbor 缓存（CI 和内网构建均可用）；
+# 纯外网本地构建可传 --build-arg REGISTRY= 退回 DockerHub。
+ARG NODE_VERSION=20.18.0
+ARG REGISTRY=harbor.sunmoonai.com:30443/k8s-images
+
+FROM ${REGISTRY}/node:${NODE_VERSION} AS build
 
 # ============================================================================
 # 代理配置（可选，仅在国内网络环境需要）
@@ -34,7 +40,7 @@ FROM node:20.18.0 AS build
 # 如果需要代理，可以通过 --build-arg 传递：
 #   docker build --build-arg HTTP_PROXY=http://proxy.example.com:8080 \
 #                --build-arg HTTPS_PROXY=http://proxy.example.com:8080 \
-#                -f mybuild/Dockerfile -t tpl-app-ssr:1.0.0 .
+#                -f mybuild/Dockerfile -t tpl-web-frontend:1.0.0 .
 # ============================================================================
 ARG HTTP_PROXY
 ARG HTTPS_PROXY
@@ -51,6 +57,12 @@ ENV HTTP_PROXY=${HTTP_PROXY} \
     NO_PROXY=${NO_PROXY} \
     no_proxy=${no_proxy}
 
+# NEXT_PUBLIC_* 构建时静态嵌入 bundle，CI 通过 --build-arg 注入
+ARG NEXT_PUBLIC_API_URL
+ARG NEXT_PUBLIC_APP_NAME=tpl
+ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL} \
+    NEXT_PUBLIC_APP_NAME=${NEXT_PUBLIC_APP_NAME}
+
 # 安装 sharp 所需的系统依赖（libvips 等）
 # node:20 基于 Debian，需要安装这些依赖以确保 sharp 能正常编译
 # 注意：即使本地已有这些库，Docker 镜像中也需要显式安装
@@ -65,42 +77,22 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/*
 
 # 安装 pnpm（使用 corepack，Node.js 20+ 内置支持）
-RUN corepack enable && corepack prepare pnpm@9.12.3 --activate
+RUN npm install -g pnpm@10.24.0
 
-# 设置环境变量
-# 注意：不强制从源码编译 sharp，使用预编译二进制更可靠
-ENV NODE_ENV=development \
-    APP_ENV=development
+# 注意：不设置 NODE_ENV，由 next build 内部自动设为 production
+# 若在此处设置 NODE_ENV=development，React 会使用开发模式构建，
+# 导致 /_global-error 预渲染时 useContext 报错
+# CI=true：pnpm 在无 TTY 的 Docker 环境中需要此变量才能正常执行
+ENV CI=true
 
-# ============================================================================
-# 构建上下文说明
-# ============================================================================
-# 构建上下文：项目根目录（tpl-app-ssr/）
-# Dockerfile 位置：mybuild/Dockerfile
-# 构建命令：docker build -f mybuild/Dockerfile -t tpl-app-ssr:1.0.0 .
-#
-# 重要说明：
-# - Docker 的 COPY 指令只能访问构建上下文内的文件
-# - 不能使用 ../ 访问构建上下文之外的文件
-# - 因为构建上下文是项目根目录，所以可以直接使用 app/ 访问源代码
-# ============================================================================
-
-# 复制源代码（包括 package.json 和 pnpm-lock.yaml）
-# 注意：构建上下文是项目根目录，所以直接使用 app/（不能使用 ../app/）
-# COPY 路径必须相对于构建上下文，不能超出构建上下文范围
+# 构建上下文为子模块根目录；源码在 app/ 子目录
 COPY app/ /frontend
 WORKDIR /frontend
-# 先安装依赖
-# 如果 lock 文件与 package.json 不匹配，先更新 lock 文件
-# 重要：在安装依赖时显式设置环境变量，确保 sharp 从源码编译
-RUN rm -rf node_modules 2>/dev/null || true
-# 先尝试使用 frozen-lockfile，如果失败则更新 lock 文件
-# 使用预编译的 sharp 二进制文件（更可靠）
-RUN pnpm install --frozen-lockfile || \
-    pnpm install
-# 构建应用（需 next.config 中 output: 'standalone'）
+
+RUN pnpm install --frozen-lockfile
+
+# 须在 next.config 中配置 output: 'standalone'
 RUN pnpm build
-EXPOSE 3000
 
 FROM build AS run-dev
 CMD ["pnpm", "dev"]
@@ -111,7 +103,9 @@ ENTRYPOINT ["pnpm"]
 CMD ["start"]
 
 # 使用精确的 Node.js 版本，确保与 build 阶段一致
-FROM node:20.18.0-alpine AS run-minimal
+ARG NODE_VERSION=20.18.0
+ARG REGISTRY=harbor.sunmoonai.com:30443/k8s-images
+FROM ${REGISTRY}/node:${NODE_VERSION}-alpine AS run-minimal
 
 # ============================================================================
 # 代理配置（可选，与 build 阶段相同）
