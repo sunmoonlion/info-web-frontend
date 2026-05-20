@@ -49,7 +49,7 @@ TPL_SSR_IMAGE="${TPL_SSR_IMAGE:-tpl-web-frontend}"
 TPL_SSR_TAG="${TPL_SSR_TAG:-1.0.0}"
 
 # 镜像仓库配置（从 build.conf 读取）
-TPL_SSR_IMAGE_REGISTRY="${TPL_SSR_IMAGE_REGISTRY:-harbor.sunmoonai.com:30443}"
+TPL_SSR_IMAGE_REGISTRY="${TPL_SSR_IMAGE_REGISTRY:-harbor.sunmoonai.com}"
 TPL_SSR_IMAGE_PROJECT="${TPL_SSR_IMAGE_PROJECT:-k8s-images}"
 
 # 构建选项
@@ -136,7 +136,7 @@ build_image() {
     # 构建镜像（构建上下文是项目根目录，Dockerfile 在 mybuild/ 目录）
     $RUNTIME_CMD build -f "$SCRIPT_DIR/$DOCKERFILE" \
         -t "${TPL_SSR_IMAGE}:${TPL_SSR_TAG}" \
-        --build-arg REGISTRY="${REGISTRY:-harbor.sunmoonai.com:30443/k8s-images}" \
+        --build-arg REGISTRY="${REGISTRY:-harbor.sunmoonai.com/k8s-images}" \
         .
     
     if [ $? -eq 0 ]; then

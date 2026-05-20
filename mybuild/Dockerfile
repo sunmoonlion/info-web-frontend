@@ -29,7 +29,7 @@
 # REGISTRY 默认指向 Harbor 缓存（CI 和内网构建均可用）；
 # 纯外网本地构建可传 --build-arg REGISTRY= 退回 DockerHub。
 ARG NODE_VERSION=20.18.0
-ARG REGISTRY=harbor.sunmoonai.com:30443/k8s-images
+ARG REGISTRY=harbor.sunmoonai.com/k8s-images
 
 FROM ${REGISTRY}/node:${NODE_VERSION} AS build
 
@@ -104,7 +104,7 @@ CMD ["start"]
 
 # 使用精确的 Node.js 版本，确保与 build 阶段一致
 ARG NODE_VERSION=20.18.0
-ARG REGISTRY=harbor.sunmoonai.com:30443/k8s-images
+ARG REGISTRY=harbor.sunmoonai.com/k8s-images
 FROM ${REGISTRY}/node:${NODE_VERSION}-alpine AS run-minimal
 
 # ============================================================================
