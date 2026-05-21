@@ -39,6 +39,7 @@ if [ -f "$BUILD_CONF" ]; then
     log_info "加载构建配置: $BUILD_CONF"
     # shellcheck source=/dev/null
     source "$BUILD_CONF"
+source "$SCRIPT_DIR/harbor-cluster.sh"
 else
     log_error "构建配置文件不存在: $BUILD_CONF"
     exit 1
@@ -50,7 +51,7 @@ TPL_SSR_TAG="${TPL_SSR_TAG:-1.0.0}"
 
 # 镜像仓库配置（从 build.conf 读取）
 TPL_SSR_IMAGE_REGISTRY="${TPL_SSR_IMAGE_REGISTRY:-harbor.sunmoonai.com}"
-TPL_SSR_IMAGE_PROJECT="${TPL_SSR_IMAGE_PROJECT:-k8s-images}"
+TPL_SSR_IMAGE_PROJECT="${TPL_SSR_IMAGE_PROJECT:-app-images}"
 
 # 构建选项
 DOCKERFILE="${DOCKERFILE:-Dockerfile}"
@@ -175,7 +176,9 @@ push_image() {
     log_info "推送镜像到镜像仓库..."
     
     # 构建完整镜像名称
-    TPL_SSR_FULL_IMAGE_NAME="${TPL_SSR_IMAGE_REGISTRY}/${TPL_SSR_IMAGE_PROJECT}/${TPL_SSR_IMAGE}:${TPL_SSR_TAG}"
+    TPL_SSR_local push_registry
+    push_registry="$(resolve_harbor_registry_for_push "${TPL_SSR_IMAGE_REGISTRY:-harbor.sunmoonai.com}")"
+    FULL_IMAGE_NAME="${push_registry}/${TPL_SSR_IMAGE_PROJECT}/${TPL_SSR_IMAGE}:${TPL_SSR_TAG}"
     
     log_info "完整镜像名称: $TPL_SSR_FULL_IMAGE_NAME"
     
@@ -190,7 +193,7 @@ push_image() {
     $RUNTIME_CMD tag "${TPL_SSR_IMAGE}:${TPL_SSR_TAG}" "$TPL_SSR_FULL_IMAGE_NAME"
     
     # 推送镜像
-    if $RUNTIME_CMD push "$TPL_SSR_FULL_IMAGE_NAME"; then
+    if push_image_with_harbor_verify "$RUNTIME_CMD" "$TPL_SSR_FULL_IMAGE_NAME"; then
         log_success "✅ 镜像推送成功: $TPL_SSR_FULL_IMAGE_NAME"
     else
         log_error "❌ 镜像推送失败: $TPL_SSR_FULL_IMAGE_NAME"
