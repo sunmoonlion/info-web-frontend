@@ -93,6 +93,7 @@ fi
 
 # 镜像推送配置（从 build.conf 读取）
 PUSH_IMAGES_AFTER_BUILD="${PUSH_IMAGES_AFTER_BUILD:-false}"
+DOCKER_BUILD_NETWORK="${DOCKER_BUILD_NETWORK:-}"
 
 # 获取项目根目录（构建上下文）
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
@@ -134,9 +135,16 @@ build_image() {
     cd "$PROJECT_ROOT"
     
     # 构建镜像（构建上下文是项目根目录，Dockerfile 在 mybuild/ 目录）
-    $RUNTIME_CMD build -f "$SCRIPT_DIR/$DOCKERFILE" \
+    local build_network_args=()
+    if [ -n "$DOCKER_BUILD_NETWORK" ]; then
+        build_network_args=(--network "$DOCKER_BUILD_NETWORK")
+        log_info "Docker build 网络模式: $DOCKER_BUILD_NETWORK"
+    fi
+
+    $RUNTIME_CMD build "${build_network_args[@]}" -f "$SCRIPT_DIR/$DOCKERFILE" \
         -t "${TPL_SSR_IMAGE}:${TPL_SSR_TAG}" \
         --build-arg REGISTRY="${REGISTRY:-harbor.sunmoonai.com/k8s-images}" \
+        --build-arg NPM_CONFIG_REGISTRY="${NPM_CONFIG_REGISTRY:-https://registry.npmmirror.com}" \
         .
     
     if [ $? -eq 0 ]; then
@@ -209,4 +217,3 @@ main() {
 
 # 执行主函数
 main "$@"
-

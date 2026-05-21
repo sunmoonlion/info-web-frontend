@@ -76,8 +76,20 @@ RUN apt-get update && \
     g++ \
     && rm -rf /var/lib/apt/lists/*
 
+ARG NPM_CONFIG_REGISTRY=https://registry.npmmirror.com
+ENV npm_config_registry=${NPM_CONFIG_REGISTRY} \
+    COREPACK_NPM_REGISTRY=${NPM_CONFIG_REGISTRY} \
+    COREPACK_INTEGRITY_KEYS=0 \
+    npm_config_fetch_retries=5 \
+    npm_config_fetch_retry_maxtimeout=120000 \
+    npm_config_fetch_timeout=600000
+
 # 安装 pnpm（使用 corepack，Node.js 20+ 内置支持）
-RUN npm install -g pnpm@10.24.0
+RUN timeout 120 sh -c 'corepack enable && corepack prepare pnpm@10.24.0 --activate'
+
+ENV CYPRESS_INSTALL_BINARY=0 \
+    ELECTRON_SKIP_BINARY_DOWNLOAD=1 \
+    PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
 
 # 注意：不设置 NODE_ENV，由 next build 内部自动设为 production
 # 若在此处设置 NODE_ENV=development，React 会使用开发模式构建，
@@ -89,7 +101,9 @@ ENV CI=true
 COPY app/ /frontend
 WORKDIR /frontend
 
-RUN pnpm install --frozen-lockfile
+RUN --mount=type=cache,target=/pnpm/store \
+    pnpm config set store-dir /pnpm/store && \
+    pnpm install --frozen-lockfile --network-concurrency=3
 
 # 须在 next.config 中配置 output: 'standalone'
 RUN pnpm build
@@ -102,10 +116,9 @@ ENV NODE_ENV=production APP_ENV=production
 ENTRYPOINT ["pnpm"]
 CMD ["start"]
 
-# 使用精确的 Node.js 版本，确保与 build 阶段一致
-ARG NODE_VERSION=20.18.0
-ARG REGISTRY=harbor.sunmoonai.com/k8s-images
-FROM ${REGISTRY}/node:${NODE_VERSION}-alpine AS run-minimal
+# 复用 build 阶段的 Debian Node 环境，避免运行阶段再访问 Alpine apk 源。
+# build 阶段已安装 libvips-dev，可满足 sharp 运行时对 libvips 的依赖。
+FROM build AS run-minimal
 
 # ============================================================================
 # 代理配置（可选，与 build 阶段相同）
@@ -124,23 +137,6 @@ ENV HTTP_PROXY=${HTTP_PROXY} \
     https_proxy=${https_proxy} \
     NO_PROXY=${NO_PROXY} \
     no_proxy=${no_proxy}
-# ============================================================================
-# 重要说明：Alpine Linux 环境差异与 Sharp 依赖
-# ============================================================================
-# Alpine Linux 与 Debian（build 阶段）不同：
-# - 使用 musl libc 而不是 glibc（可能导致原生模块兼容性问题）
-# - 包管理器是 apk 而不是 apt
-# - 包名不同（vips 而不是 libvips-dev）
-# - 体积更小，适合生产环境
-#
-# Sharp 图像处理库依赖：
-# - Build 阶段（Debian）：需要 libvips-dev（开发版本，包含头文件）用于编译
-# - Run 阶段（Alpine）：只需要 vips（运行时版本，体积更小）
-# - 注意：Next.js `output: 'standalone'` 的 server bundle 已包含大部分依赖；
-#   若 sharp 仍需要系统 vips，建议保留 apk 中的 vips
-# ============================================================================
-RUN apk add --no-cache vips
-
 WORKDIR /app
 ENV NODE_ENV=production \
     APP_ENV=production \
