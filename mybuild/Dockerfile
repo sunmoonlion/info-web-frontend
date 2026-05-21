@@ -84,8 +84,12 @@ ENV npm_config_registry=${NPM_CONFIG_REGISTRY} \
     npm_config_fetch_retry_maxtimeout=120000 \
     npm_config_fetch_timeout=600000
 
-# 安装 pnpm（使用 corepack，Node.js 20+ 内置支持）
-RUN timeout 120 sh -c 'corepack enable && corepack prepare pnpm@10.24.0 --activate'
+# 安装 pnpm，使用 npm 的重试/超时参数避免 corepack 短超时导致构建中断。
+RUN npm install -g pnpm@10.24.0 \
+    --registry="${NPM_CONFIG_REGISTRY}" \
+    --fetch-retries=5 \
+    --fetch-retry-maxtimeout=120000 \
+    --fetch-timeout=600000
 
 ENV CYPRESS_INSTALL_BINARY=0 \
     ELECTRON_SKIP_BINARY_DOWNLOAD=1 \
