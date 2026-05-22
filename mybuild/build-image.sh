@@ -40,6 +40,8 @@ if [ -f "$BUILD_CONF" ]; then
     # shellcheck source=/dev/null
     source "$BUILD_CONF"
     source "$SCRIPT_DIR/harbor-cluster.sh"
+REGISTRY="$(resolve_k8s_images_registry)" || exit 1
+export REGISTRY
 else
     log_error "构建配置文件不存在: $BUILD_CONF"
     exit 1
@@ -148,7 +150,7 @@ build_image() {
 
     $RUNTIME_CMD build "${build_network_args[@]}" -f "$SCRIPT_DIR/$DOCKERFILE" \
         -t "${TPL_SSR_IMAGE}:${TPL_SSR_TAG}" \
-        --build-arg REGISTRY="${REGISTRY:-harbor.sunmoonai.com/k8s-images}" \
+        --build-arg REGISTRY="${REGISTRY}" \
         --build-arg NPM_CONFIG_REGISTRY="${NPM_CONFIG_REGISTRY:-https://registry.npmmirror.com}" \
         .
     
