@@ -31,7 +31,7 @@
 ARG NODE_VERSION=20.18.0
 ARG REGISTRY=harbor.sunmoonai.com/k8s-images
 
-FROM ${REGISTRY}/node:${NODE_VERSION} AS build
+FROM ${REGISTRY}/node:${NODE_VERSION}-alpine AS build
 
 # ============================================================================
 # 代理配置（可选，仅在国内网络环境需要）
@@ -63,18 +63,8 @@ ARG NEXT_PUBLIC_APP_NAME=tpl
 ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL} \
     NEXT_PUBLIC_APP_NAME=${NEXT_PUBLIC_APP_NAME}
 
-# 安装 sharp 所需的系统依赖（libvips 等）
-# node:20 基于 Debian，需要安装这些依赖以确保 sharp 能正常编译
-# 注意：即使本地已有这些库，Docker 镜像中也需要显式安装
-# 使用官方源（适合国外主机）
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends --fix-missing \
-    libvips-dev \
-    libglib2.0-dev \
-    python3 \
-    make \
-    g++ \
-    && rm -rf /var/lib/apt/lists/*
+# 使用 Alpine 构建，pnpm 会按 musl 平台安装 Next/SWC/sharp 的可选依赖。
+# 这里不安装编译工具，避免把 build-only 系统依赖引入镜像层。
 
 ARG NPM_CONFIG_REGISTRY=https://registry.npmmirror.com
 ENV npm_config_registry=${NPM_CONFIG_REGISTRY} \
@@ -85,11 +75,11 @@ ENV npm_config_registry=${NPM_CONFIG_REGISTRY} \
     npm_config_fetch_timeout=600000
 
 # 安装 pnpm，使用 npm 的重试/超时参数避免 corepack 短超时导致构建中断。
-RUN npm install -g pnpm@10.24.0 \
+RUN timeout 120 npm install -g pnpm@10.24.0 \
     --registry="${NPM_CONFIG_REGISTRY}" \
     --fetch-retries=5 \
     --fetch-retry-maxtimeout=120000 \
-    --fetch-timeout=600000
+    --fetch-timeout=120000
 
 ENV CYPRESS_INSTALL_BINARY=0 \
     ELECTRON_SKIP_BINARY_DOWNLOAD=1 \
@@ -120,9 +110,9 @@ ENV NODE_ENV=production APP_ENV=production
 ENTRYPOINT ["pnpm"]
 CMD ["start"]
 
-# 复用 build 阶段的 Debian Node 环境，避免运行阶段再访问 Alpine apk 源。
-# build 阶段已安装 libvips-dev，可满足 sharp 运行时对 libvips 的依赖。
-FROM build AS run-minimal
+# 使用独立运行阶段，只带 Node Alpine 基础镜像和 Next standalone 产物。
+# 不要 FROM build，否则会把 pnpm store、node_modules、构建缓存和编译依赖一起带进最终镜像。
+FROM ${REGISTRY}/node:${NODE_VERSION}-alpine AS run-minimal
 
 # ============================================================================
 # 代理配置（可选，与 build 阶段相同）

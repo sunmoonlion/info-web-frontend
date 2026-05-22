@@ -39,7 +39,7 @@ if [ -f "$BUILD_CONF" ]; then
     log_info "加载构建配置: $BUILD_CONF"
     # shellcheck source=/dev/null
     source "$BUILD_CONF"
-source "$SCRIPT_DIR/harbor-cluster.sh"
+    source "$SCRIPT_DIR/harbor-cluster.sh"
 else
     log_error "构建配置文件不存在: $BUILD_CONF"
     exit 1
@@ -156,7 +156,7 @@ build_image() {
         log_success "镜像构建完成: ${TPL_SSR_IMAGE}:${TPL_SSR_TAG}"
         echo ""
         log_info "镜像信息:"
-        $RUNTIME_CMD images | grep "${TPL_SSR_IMAGE}" | grep "${TPL_SSR_TAG}" | head -1
+        $RUNTIME_CMD images "${TPL_SSR_IMAGE}:${TPL_SSR_TAG}"
         
         # 根据配置决定是否推送
         if [[ "${PUSH_IMAGES_AFTER_BUILD}" == "true" ]]; then
@@ -180,9 +180,9 @@ push_image() {
     log_info "推送镜像到镜像仓库..."
     
     # 构建完整镜像名称
-    TPL_SSR_local push_registry
+    local push_registry
     push_registry="$(resolve_harbor_registry_for_push "${TPL_SSR_IMAGE_REGISTRY:-harbor.sunmoonai.com}")"
-    FULL_IMAGE_NAME="${push_registry}/${TPL_SSR_IMAGE_PROJECT}/${TPL_SSR_IMAGE}:${TPL_SSR_TAG}"
+    TPL_SSR_FULL_IMAGE_NAME="${push_registry}/${TPL_SSR_IMAGE_PROJECT}/${TPL_SSR_IMAGE}:${TPL_SSR_TAG}"
     
     log_info "完整镜像名称: $TPL_SSR_FULL_IMAGE_NAME"
     
