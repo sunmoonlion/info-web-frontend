@@ -48,7 +48,7 @@ else
 fi
 
 # 镜像配置（从 build.conf 读取）
-TPL_SSR_IMAGE="${TPL_SSR_IMAGE:-tpl-web-frontend}"
+TPL_SSR_IMAGE="${TPL_SSR_IMAGE:-info-web-frontend}"
 TPL_SSR_TAG="${TPL_SSR_TAG:-1.0.0}"
 
 # 镜像仓库配置（从 build.conf 读取）
