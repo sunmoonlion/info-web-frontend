@@ -1,0 +1,18 @@
+{
+ "id": "32acccbe-ed1a-57c5-9d32-d928a7337e57",
+ "security_code": "601318",
+ "kind": "initial",
+ "progress": "failed",
+ "created_at": "2026-09-29T16:04:47.230306Z",
+ "closed_at": null,
+ "requesters": 1,
+ "mine": {
+  "reason": null,
+  "origin": null,
+  "requested_at": "2026-09-29T16:04:47.229960Z",
+  "withdrawn": false
+ },
+ "can_withdraw": false,
+ "rejection_note": null,
+ "dataset": null
+}

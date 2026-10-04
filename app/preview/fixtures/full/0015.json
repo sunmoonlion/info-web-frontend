@@ -1,0 +1,32 @@
+{
+ "security_code": "601012",
+ "market": "SH",
+ "in_watchlist": false,
+ "dataset": null,
+ "open_request": {
+  "id": "7679e7df-8718-5408-8ba3-5f59a9525cf4",
+  "security_code": "601012",
+  "kind": "initial",
+  "progress": "pending",
+  "created_at": "2026-09-29T16:04:47.386755Z",
+  "closed_at": null,
+  "requesters": 2,
+  "mine": {
+   "reason": "要做光伏行业的对比",
+   "origin": {
+    "app": "investment",
+    "ref": "task:7f3a",
+    "return_url": "http://localhost:3100/zh-CN/workbench?ref=task%3A7f3a"
+   },
+   "requested_at": "2026-09-29T16:04:47.386438Z",
+   "withdrawn": false
+  },
+  "can_withdraw": true,
+  "rejection_note": null,
+  "dataset": null
+ },
+ "mine": true,
+ "my_open_count": 5,
+ "max_open": 5,
+ "needs_approval": true
+}

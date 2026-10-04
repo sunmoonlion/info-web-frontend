@@ -1,0 +1,6 @@
+{
+ "detail": {
+  "code": "security_code_invalid",
+  "message": "证券代码必须是六位数字"
+ }
+}

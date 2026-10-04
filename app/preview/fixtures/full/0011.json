@@ -1,0 +1,18 @@
+{
+ "id": "5acd21f7-5aec-5da2-a689-3ed150887faa",
+ "security_code": "600887",
+ "kind": "initial",
+ "progress": "building",
+ "created_at": "2026-09-29T16:04:47.492784Z",
+ "closed_at": null,
+ "requesters": 1,
+ "mine": {
+  "reason": null,
+  "origin": null,
+  "requested_at": "2026-09-29T16:04:47.492469Z",
+  "withdrawn": false
+ },
+ "can_withdraw": false,
+ "rejection_note": null,
+ "dataset": null
+}

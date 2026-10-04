@@ -1,0 +1,234 @@
+{
+ "id": "full",
+ "title": "什么都有",
+ "description": "一个申请过十一家公司的人：每种进度各一个，其中五个还在走（同时未完成的上限就是五个）。",
+ "signed_in": true,
+ "user": {
+  "display_name": "样例用户"
+ },
+ "pages": [
+  {
+   "title": "我的申请",
+   "path": "/zh-CN/requests"
+  },
+  {
+   "title": "申请入库（什么都没带）",
+   "path": "/zh-CN/requests/new"
+  },
+  {
+   "title": "申请入库（从 investment 带着代码过来）",
+   "path": "/zh-CN/requests/new?code=600585&from=investment&ref=task:42"
+  },
+  {
+   "title": "申请入库（这家已经有数据）",
+   "path": "/zh-CN/requests/new?code=002594&from=knowledge"
+  },
+  {
+   "title": "申请入库（我已经申请过）",
+   "path": "/zh-CN/requests/new?code=601012"
+  },
+  {
+   "title": "申请入库（代码不对）",
+   "path": "/zh-CN/requests/new?code=12345"
+  },
+  {
+   "title": "一个申请：等批准",
+   "path": "/zh-CN/requests/7679e7df-8718-5408-8ba3-5f59a9525cf4"
+  },
+  {
+   "title": "一个申请：排队中",
+   "path": "/zh-CN/requests/f0410883-287b-578b-81dc-15f24e5b2d8f"
+  },
+  {
+   "title": "一个申请：采集中",
+   "path": "/zh-CN/requests/06944124-075a-504f-b4f3-275ef032eb9c"
+  },
+  {
+   "title": "一个申请：建库中",
+   "path": "/zh-CN/requests/5acd21f7-5aec-5da2-a689-3ed150887faa"
+  },
+  {
+   "title": "一个申请：登记中",
+   "path": "/zh-CN/requests/69268fa0-44c9-5bb1-8187-e0ddab71455f"
+  },
+  {
+   "title": "一个申请：可用",
+   "path": "/zh-CN/requests/0f79a87c-7bf3-5956-be15-01e3988797ee"
+  },
+  {
+   "title": "一个申请：没通过质量检查",
+   "path": "/zh-CN/requests/d1d13ed0-4e39-5486-b0c6-c7b80742eb0e"
+  },
+  {
+   "title": "一个申请：采集失败",
+   "path": "/zh-CN/requests/32acccbe-ed1a-57c5-9d32-d928a7337e57"
+  },
+  {
+   "title": "一个申请：登记失败",
+   "path": "/zh-CN/requests/868e3e7e-acfc-5d8c-9340-fba470994d10"
+  },
+  {
+   "title": "一个申请：被拒绝",
+   "path": "/zh-CN/requests/b76b252a-dd57-5c80-90af-4a9823df06b0"
+  },
+  {
+   "title": "一个申请：已撤回",
+   "path": "/zh-CN/requests/d35d6a3c-0149-5775-a1c7-860389fb558a"
+  }
+ ],
+ "responses": [
+  {
+   "method": "POST",
+   "path": "/api/web/v1/security-requests",
+   "query": "",
+   "status": 409,
+   "content_type": "application/json",
+   "file": "0001.json"
+  },
+  {
+   "method": "GET",
+   "path": "/api/web/v1/security-requests/0f79a87c-7bf3-5956-be15-01e3988797ee",
+   "query": "",
+   "status": 200,
+   "content_type": "application/json",
+   "file": "0002.json"
+  },
+  {
+   "method": "GET",
+   "path": "/api/web/v1/security-requests/d1d13ed0-4e39-5486-b0c6-c7b80742eb0e",
+   "query": "",
+   "status": 200,
+   "content_type": "application/json",
+   "file": "0003.json"
+  },
+  {
+   "method": "GET",
+   "path": "/api/web/v1/security-requests/32acccbe-ed1a-57c5-9d32-d928a7337e57",
+   "query": "",
+   "status": 200,
+   "content_type": "application/json",
+   "file": "0004.json"
+  },
+  {
+   "method": "GET",
+   "path": "/api/web/v1/security-requests/868e3e7e-acfc-5d8c-9340-fba470994d10",
+   "query": "",
+   "status": 200,
+   "content_type": "application/json",
+   "file": "0005.json"
+  },
+  {
+   "method": "GET",
+   "path": "/api/web/v1/security-requests/b76b252a-dd57-5c80-90af-4a9823df06b0",
+   "query": "",
+   "status": 200,
+   "content_type": "application/json",
+   "file": "0006.json"
+  },
+  {
+   "method": "POST",
+   "path": "/api/web/v1/security-requests/d35d6a3c-0149-5775-a1c7-860389fb558a/withdrawal",
+   "query": "",
+   "status": 200,
+   "content_type": "application/json",
+   "file": "0007.json"
+  },
+  {
+   "method": "GET",
+   "path": "/api/web/v1/security-requests/d35d6a3c-0149-5775-a1c7-860389fb558a",
+   "query": "",
+   "status": 200,
+   "content_type": "application/json",
+   "file": "0008.json"
+  },
+  {
+   "method": "GET",
+   "path": "/api/web/v1/security-requests/f0410883-287b-578b-81dc-15f24e5b2d8f",
+   "query": "",
+   "status": 200,
+   "content_type": "application/json",
+   "file": "0009.json"
+  },
+  {
+   "method": "GET",
+   "path": "/api/web/v1/security-requests/06944124-075a-504f-b4f3-275ef032eb9c",
+   "query": "",
+   "status": 200,
+   "content_type": "application/json",
+   "file": "0010.json"
+  },
+  {
+   "method": "GET",
+   "path": "/api/web/v1/security-requests/5acd21f7-5aec-5da2-a689-3ed150887faa",
+   "query": "",
+   "status": 200,
+   "content_type": "application/json",
+   "file": "0011.json"
+  },
+  {
+   "method": "GET",
+   "path": "/api/web/v1/security-requests/69268fa0-44c9-5bb1-8187-e0ddab71455f",
+   "query": "",
+   "status": 200,
+   "content_type": "application/json",
+   "file": "0012.json"
+  },
+  {
+   "method": "GET",
+   "path": "/api/web/v1/security-requests",
+   "query": "",
+   "status": 200,
+   "content_type": "application/json",
+   "file": "0013.json"
+  },
+  {
+   "method": "GET",
+   "path": "/api/web/v1/securities/002594/availability",
+   "query": "",
+   "status": 200,
+   "content_type": "application/json",
+   "file": "0014.json"
+  },
+  {
+   "method": "GET",
+   "path": "/api/web/v1/securities/601012/availability",
+   "query": "",
+   "status": 200,
+   "content_type": "application/json",
+   "file": "0015.json"
+  },
+  {
+   "method": "GET",
+   "path": "/api/web/v1/securities/600519/availability",
+   "query": "",
+   "status": 200,
+   "content_type": "application/json",
+   "file": "0016.json"
+  },
+  {
+   "method": "GET",
+   "path": "/api/web/v1/securities/600585/availability",
+   "query": "",
+   "status": 200,
+   "content_type": "application/json",
+   "file": "0017.json"
+  },
+  {
+   "method": "GET",
+   "path": "/api/web/v1/securities/600436/availability",
+   "query": "",
+   "status": 200,
+   "content_type": "application/json",
+   "file": "0018.json"
+  },
+  {
+   "method": "GET",
+   "path": "/api/web/v1/securities/12345/availability",
+   "query": "",
+   "status": 422,
+   "content_type": "application/json",
+   "file": "0019.json"
+  }
+ ],
+ "streams": []
+}

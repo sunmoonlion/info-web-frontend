@@ -1,0 +1,18 @@
+{
+ "id": "f0410883-287b-578b-81dc-15f24e5b2d8f",
+ "security_code": "600036",
+ "kind": "initial",
+ "progress": "queued",
+ "created_at": "2026-09-29T16:04:47.409808Z",
+ "closed_at": null,
+ "requesters": 1,
+ "mine": {
+  "reason": null,
+  "origin": null,
+  "requested_at": "2026-09-29T16:04:47.409468Z",
+  "withdrawn": false
+ },
+ "can_withdraw": false,
+ "rejection_note": null,
+ "dataset": null
+}

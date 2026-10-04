@@ -1,0 +1,6 @@
+{
+ "detail": {
+  "code": "too_many_open_requests",
+  "message": "你还有 5 个申请没有完成，等它们完成或撤回之后再提"
+ }
+}

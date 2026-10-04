@@ -1,0 +1,18 @@
+{
+ "id": "d35d6a3c-0149-5775-a1c7-860389fb558a",
+ "security_code": "600030",
+ "kind": "initial",
+ "progress": "withdrawn",
+ "created_at": "2026-09-29T16:04:47.354163Z",
+ "closed_at": "2026-09-29T16:04:47.370239Z",
+ "requesters": 0,
+ "mine": {
+  "reason": "填错了代码",
+  "origin": null,
+  "requested_at": "2026-09-29T16:04:47.353836Z",
+  "withdrawn": true
+ },
+ "can_withdraw": false,
+ "rejection_note": null,
+ "dataset": null
+}
