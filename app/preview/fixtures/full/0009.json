@@ -3,13 +3,13 @@
  "security_code": "600036",
  "kind": "initial",
  "progress": "queued",
- "created_at": "2026-10-04T08:08:43.012201Z",
+ "created_at": "2026-10-04T08:15:26.659549Z",
  "closed_at": null,
  "requesters": 1,
  "mine": {
   "reason": null,
   "origin": null,
-  "requested_at": "2026-10-04T08:08:43.011880Z",
+  "requested_at": "2026-10-04T08:15:26.659250Z",
   "withdrawn": false
  },
  "can_withdraw": false,

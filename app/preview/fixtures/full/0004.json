@@ -3,13 +3,13 @@
  "security_code": "601318",
  "kind": "initial",
  "progress": "failed",
- "created_at": "2026-10-04T08:08:42.843578Z",
- "closed_at": "2026-10-04T08:08:42.880354Z",
+ "created_at": "2026-10-04T08:15:26.491036Z",
+ "closed_at": "2026-10-04T08:15:26.526511Z",
  "requesters": 1,
  "mine": {
   "reason": null,
   "origin": null,
-  "requested_at": "2026-10-04T08:08:42.843279Z",
+  "requested_at": "2026-10-04T08:15:26.490771Z",
   "withdrawn": false
  },
  "can_withdraw": false,

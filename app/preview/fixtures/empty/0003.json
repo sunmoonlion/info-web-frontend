@@ -3,13 +3,13 @@
  "security_code": "600585",
  "kind": "initial",
  "progress": "pending",
- "created_at": "2026-10-04T08:08:44.030701Z",
+ "created_at": "2026-10-04T08:15:27.663765Z",
  "closed_at": null,
  "requesters": 1,
  "mine": {
   "reason": "想看海螺水泥",
   "origin": null,
-  "requested_at": "2026-10-04T08:08:44.030293Z",
+  "requested_at": "2026-10-04T08:15:27.663388Z",
   "withdrawn": false
  },
  "can_withdraw": true,

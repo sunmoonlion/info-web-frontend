@@ -3,13 +3,13 @@
  "security_code": "000333",
  "kind": "initial",
  "progress": "registration_failed",
- "created_at": "2026-10-04T08:08:42.884745Z",
- "closed_at": "2026-10-04T08:08:42.923070Z",
+ "created_at": "2026-10-04T08:15:26.530636Z",
+ "closed_at": "2026-10-04T08:15:26.570047Z",
  "requesters": 1,
  "mine": {
   "reason": null,
   "origin": null,
-  "requested_at": "2026-10-04T08:08:42.884437Z",
+  "requested_at": "2026-10-04T08:15:26.530337Z",
   "withdrawn": false
  },
  "can_withdraw": false,

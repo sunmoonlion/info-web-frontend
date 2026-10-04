@@ -4,13 +4,13 @@
   "security_code": "601166",
   "kind": "initial",
   "progress": "registering",
-  "created_at": "2026-10-04T08:08:43.134304Z",
+  "created_at": "2026-10-04T08:15:26.782519Z",
   "closed_at": null,
   "requesters": 1,
   "mine": {
    "reason": null,
    "origin": null,
-   "requested_at": "2026-10-04T08:08:43.133965Z",
+   "requested_at": "2026-10-04T08:15:26.782230Z",
    "withdrawn": false
   },
   "can_withdraw": false,
@@ -22,13 +22,13 @@
   "security_code": "600887",
   "kind": "initial",
   "progress": "building",
-  "created_at": "2026-10-04T08:08:43.090206Z",
+  "created_at": "2026-10-04T08:15:26.735446Z",
   "closed_at": null,
   "requesters": 1,
   "mine": {
    "reason": null,
    "origin": null,
-   "requested_at": "2026-10-04T08:08:43.089896Z",
+   "requested_at": "2026-10-04T08:15:26.735166Z",
    "withdrawn": false
   },
   "can_withdraw": false,
@@ -40,13 +40,13 @@
   "security_code": "000651",
   "kind": "initial",
   "progress": "collecting",
-  "created_at": "2026-10-04T08:08:43.048838Z",
+  "created_at": "2026-10-04T08:15:26.694823Z",
   "closed_at": null,
   "requesters": 1,
   "mine": {
    "reason": null,
    "origin": null,
-   "requested_at": "2026-10-04T08:08:43.048541Z",
+   "requested_at": "2026-10-04T08:15:26.694535Z",
    "withdrawn": false
   },
   "can_withdraw": false,
@@ -58,13 +58,13 @@
   "security_code": "600036",
   "kind": "initial",
   "progress": "queued",
-  "created_at": "2026-10-04T08:08:43.012201Z",
+  "created_at": "2026-10-04T08:15:26.659549Z",
   "closed_at": null,
   "requesters": 1,
   "mine": {
    "reason": null,
    "origin": null,
-   "requested_at": "2026-10-04T08:08:43.011880Z",
+   "requested_at": "2026-10-04T08:15:26.659250Z",
    "withdrawn": false
   },
   "can_withdraw": false,
@@ -76,7 +76,7 @@
   "security_code": "601012",
   "kind": "initial",
   "progress": "pending",
-  "created_at": "2026-10-04T08:08:42.989577Z",
+  "created_at": "2026-10-04T08:15:26.638672Z",
   "closed_at": null,
   "requesters": 2,
   "mine": {
@@ -86,7 +86,7 @@
     "ref": "task:7f3a",
     "return_url": "http://localhost:3100/zh-CN/workbench?ref=task%3A7f3a"
    },
-   "requested_at": "2026-10-04T08:08:42.989259Z",
+   "requested_at": "2026-10-04T08:15:26.638120Z",
    "withdrawn": false
   },
   "can_withdraw": true,
@@ -98,13 +98,13 @@
   "security_code": "600030",
   "kind": "initial",
   "progress": "withdrawn",
-  "created_at": "2026-10-04T08:08:42.956867Z",
-  "closed_at": "2026-10-04T08:08:42.972095Z",
+  "created_at": "2026-10-04T08:15:26.607185Z",
+  "closed_at": "2026-10-04T08:15:26.622706Z",
   "requesters": 0,
   "mine": {
    "reason": "填错了代码",
    "origin": null,
-   "requested_at": "2026-10-04T08:08:42.956568Z",
+   "requested_at": "2026-10-04T08:15:26.606858Z",
    "withdrawn": true
   },
   "can_withdraw": false,
@@ -116,8 +116,8 @@
   "security_code": "688981",
   "kind": "initial",
   "progress": "rejected",
-  "created_at": "2026-10-04T08:08:42.927175Z",
-  "closed_at": "2026-10-04T08:08:42.942719Z",
+  "created_at": "2026-10-04T08:15:26.574130Z",
+  "closed_at": "2026-10-04T08:15:26.591357Z",
   "requesters": 1,
   "mine": {
    "reason": "看看",
@@ -126,7 +126,7 @@
     "ref": "task:42",
     "return_url": "http://localhost:3100/zh-CN/workbench?ref=task%3A42"
    },
-   "requested_at": "2026-10-04T08:08:42.926862Z",
+   "requested_at": "2026-10-04T08:15:26.573824Z",
    "withdrawn": false
   },
   "can_withdraw": false,
@@ -138,13 +138,13 @@
   "security_code": "000333",
   "kind": "initial",
   "progress": "registration_failed",
-  "created_at": "2026-10-04T08:08:42.884745Z",
-  "closed_at": "2026-10-04T08:08:42.923070Z",
+  "created_at": "2026-10-04T08:15:26.530636Z",
+  "closed_at": "2026-10-04T08:15:26.570047Z",
   "requesters": 1,
   "mine": {
    "reason": null,
    "origin": null,
-   "requested_at": "2026-10-04T08:08:42.884437Z",
+   "requested_at": "2026-10-04T08:15:26.530337Z",
    "withdrawn": false
   },
   "can_withdraw": false,
@@ -156,13 +156,13 @@
   "security_code": "601318",
   "kind": "initial",
   "progress": "failed",
-  "created_at": "2026-10-04T08:08:42.843578Z",
-  "closed_at": "2026-10-04T08:08:42.880354Z",
+  "created_at": "2026-10-04T08:15:26.491036Z",
+  "closed_at": "2026-10-04T08:15:26.526511Z",
   "requesters": 1,
   "mine": {
    "reason": null,
    "origin": null,
-   "requested_at": "2026-10-04T08:08:42.843279Z",
+   "requested_at": "2026-10-04T08:15:26.490771Z",
    "withdrawn": false
   },
   "can_withdraw": false,
@@ -174,13 +174,13 @@
   "security_code": "600436",
   "kind": "initial",
   "progress": "quality_failed",
-  "created_at": "2026-10-04T08:08:42.796154Z",
-  "closed_at": "2026-10-04T08:08:42.839254Z",
+  "created_at": "2026-10-04T08:15:26.449081Z",
+  "closed_at": "2026-10-04T08:15:26.486963Z",
   "requesters": 1,
   "mine": {
    "reason": null,
    "origin": null,
-   "requested_at": "2026-10-04T08:08:42.795829Z",
+   "requested_at": "2026-10-04T08:15:26.448781Z",
    "withdrawn": false
   },
   "can_withdraw": false,
@@ -192,13 +192,13 @@
   "security_code": "002594",
   "kind": "initial",
   "progress": "available",
-  "created_at": "2026-10-04T08:08:42.695404Z",
-  "closed_at": "2026-10-04T08:08:42.790733Z",
+  "created_at": "2026-10-04T08:15:26.340643Z",
+  "closed_at": "2026-10-04T08:15:26.443997Z",
   "requesters": 1,
   "mine": {
    "reason": "想看比亚迪近三年的毛利率",
    "origin": null,
-   "requested_at": "2026-10-04T08:08:42.694586Z",
+   "requested_at": "2026-10-04T08:15:26.339852Z",
    "withdrawn": false
   },
   "can_withdraw": false,

@@ -3,13 +3,13 @@
  "security_code": "000651",
  "kind": "initial",
  "progress": "collecting",
- "created_at": "2026-10-04T08:08:43.048838Z",
+ "created_at": "2026-10-04T08:15:26.694823Z",
  "closed_at": null,
  "requesters": 1,
  "mine": {
   "reason": null,
   "origin": null,
-  "requested_at": "2026-10-04T08:08:43.048541Z",
+  "requested_at": "2026-10-04T08:15:26.694535Z",
   "withdrawn": false
  },
  "can_withdraw": false,
