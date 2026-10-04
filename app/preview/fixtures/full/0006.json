@@ -3,8 +3,8 @@
  "security_code": "688981",
  "kind": "initial",
  "progress": "rejected",
- "created_at": "2026-09-29T16:04:47.322582Z",
- "closed_at": "2026-09-29T16:04:47.339228Z",
+ "created_at": "2026-10-04T08:08:42.927175Z",
+ "closed_at": "2026-10-04T08:08:42.942719Z",
  "requesters": 1,
  "mine": {
   "reason": "看看",
@@ -13,7 +13,7 @@
    "ref": "task:42",
    "return_url": "http://localhost:3100/zh-CN/workbench?ref=task%3A42"
   },
-  "requested_at": "2026-09-29T16:04:47.322265Z",
+  "requested_at": "2026-10-04T08:08:42.926862Z",
   "withdrawn": false
  },
  "can_withdraw": false,

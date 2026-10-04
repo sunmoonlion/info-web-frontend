@@ -228,6 +228,14 @@
    "status": 422,
    "content_type": "application/json",
    "file": "0019.json"
+  },
+  {
+   "method": "GET",
+   "path": "/api/web/v1/security-requests/7679e7df-8718-5408-8ba3-5f59a9525cf4",
+   "query": "",
+   "status": 200,
+   "content_type": "application/json",
+   "file": "0020.json"
   }
  ],
  "streams": []

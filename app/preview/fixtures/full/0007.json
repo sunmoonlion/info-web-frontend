@@ -3,13 +3,13 @@
  "security_code": "600030",
  "kind": "initial",
  "progress": "withdrawn",
- "created_at": "2026-09-29T16:04:47.354163Z",
- "closed_at": "2026-09-29T16:04:47.370239Z",
+ "created_at": "2026-10-04T08:08:42.956867Z",
+ "closed_at": "2026-10-04T08:08:42.972095Z",
  "requesters": 0,
  "mine": {
   "reason": "填错了代码",
   "origin": null,
-  "requested_at": "2026-09-29T16:04:47.353836Z",
+  "requested_at": "2026-10-04T08:08:42.956568Z",
   "withdrawn": true
  },
  "can_withdraw": false,

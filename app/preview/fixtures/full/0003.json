@@ -3,13 +3,13 @@
  "security_code": "600436",
  "kind": "initial",
  "progress": "quality_failed",
- "created_at": "2026-09-29T16:04:47.181828Z",
- "closed_at": null,
+ "created_at": "2026-10-04T08:08:42.796154Z",
+ "closed_at": "2026-10-04T08:08:42.839254Z",
  "requesters": 1,
  "mine": {
   "reason": null,
   "origin": null,
-  "requested_at": "2026-09-29T16:04:47.181496Z",
+  "requested_at": "2026-10-04T08:08:42.795829Z",
   "withdrawn": false
  },
  "can_withdraw": false,

@@ -3,13 +3,13 @@
  "security_code": "002594",
  "kind": "initial",
  "progress": "available",
- "created_at": "2026-09-29T16:04:47.078475Z",
- "closed_at": null,
+ "created_at": "2026-10-04T08:08:42.695404Z",
+ "closed_at": "2026-10-04T08:08:42.790733Z",
  "requesters": 1,
  "mine": {
   "reason": "想看比亚迪近三年的毛利率",
   "origin": null,
-  "requested_at": "2026-09-29T16:04:47.077685Z",
+  "requested_at": "2026-10-04T08:08:42.694586Z",
   "withdrawn": false
  },
  "can_withdraw": false,

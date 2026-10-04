@@ -3,13 +3,13 @@
  "security_code": "600887",
  "kind": "initial",
  "progress": "building",
- "created_at": "2026-09-29T16:04:47.492784Z",
+ "created_at": "2026-10-04T08:08:43.090206Z",
  "closed_at": null,
  "requesters": 1,
  "mine": {
   "reason": null,
   "origin": null,
-  "requested_at": "2026-09-29T16:04:47.492469Z",
+  "requested_at": "2026-10-04T08:08:43.089896Z",
   "withdrawn": false
  },
  "can_withdraw": false,

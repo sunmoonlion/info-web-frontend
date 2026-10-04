@@ -3,13 +3,13 @@
  "security_code": "601166",
  "kind": "initial",
  "progress": "registering",
- "created_at": "2026-09-29T16:04:47.542706Z",
+ "created_at": "2026-10-04T08:08:43.134304Z",
  "closed_at": null,
  "requesters": 1,
  "mine": {
   "reason": null,
   "origin": null,
-  "requested_at": "2026-09-29T16:04:47.542373Z",
+  "requested_at": "2026-10-04T08:08:43.133965Z",
   "withdrawn": false
  },
  "can_withdraw": false,
