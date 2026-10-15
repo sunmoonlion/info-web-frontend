@@ -4,8 +4,8 @@ import { useTranslations } from 'next-intl'
 
 import { LogoutButton } from '@/components/auth/logout-button'
 
-// info 网页端的外框：顶上一条。账 56 起这里没有给用户看的页面：
-// 申请入库改为我们在 info 管理端发起采集；缺数据的需求由 investment 的 data.missing 事件汇总。
+// knowfeed 网页端的外框：顶上一条。账 56 起这里没有给用户看的页面：
+// 申请入库改为我们在 knowfeed 管理端发起采集；缺数据的需求由 investment 的 data.missing 事件汇总。
 export function InfoShell({
   csrfToken,
   locale,

@@ -6,7 +6,7 @@ const validSession = {
   authenticated: true,
   user: {
     actor_id: 'b42cf3bb-d63e-5df5-a884-9c34286f2608',
-    app: 'info',
+    app: 'knowfeed',
     surface: 'web',
     display_name: 'Template User',
     email: 'user@example.test',
@@ -31,10 +31,10 @@ describe('loadBrowserSession', () => {
 
     await expect(
       loadBrowserSession({
-        backendUrl: 'http://info-backend:8000',
-        cookieHeader: 'sunmoonai_info_web_sid=opaque-session',
+        backendUrl: 'http://knowfeed-backend:8000',
+        cookieHeader: 'sunmoonai_knowfeed_web_sid=opaque-session',
         correlationId: 'correlation-1234',
-        expectedApp: 'info',
+        expectedApp: 'knowfeed',
         fetchImpl: fetchImpl as typeof fetch,
       }),
     ).resolves.toMatchObject({
@@ -49,22 +49,22 @@ describe('loadBrowserSession', () => {
 
     await expect(
       loadBrowserSession({
-        backendUrl: 'http://info-backend:8000',
-        cookieHeader: 'sunmoonai_info_web_sid=opaque-session',
+        backendUrl: 'http://knowfeed-backend:8000',
+        cookieHeader: 'sunmoonai_knowfeed_web_sid=opaque-session',
         correlationId: 'correlation-1234',
-        expectedApp: 'info',
+        expectedApp: 'knowfeed',
         fetchImpl,
       }),
     ).resolves.toEqual(validSession)
 
     expect(fetchImpl).toHaveBeenCalledWith(
-      new URL('http://info-backend:8000/api/auth/web/me'),
+      new URL('http://knowfeed-backend:8000/api/auth/web/me'),
       expect.objectContaining({
         cache: 'no-store',
         redirect: 'manual',
         headers: {
           Accept: 'application/json',
-          Cookie: 'sunmoonai_info_web_sid=opaque-session',
+          Cookie: 'sunmoonai_knowfeed_web_sid=opaque-session',
           'x-correlation-id': 'correlation-1234',
         },
       }),
@@ -75,10 +75,10 @@ describe('loadBrowserSession', () => {
     const fetchImpl = vi.fn<typeof fetch>().mockResolvedValue(new Response(null, { status: 401 }))
     await expect(
       loadBrowserSession({
-        backendUrl: 'http://info-backend:8000',
+        backendUrl: 'http://knowfeed-backend:8000',
         cookieHeader: '',
         correlationId: 'correlation-1234',
-        expectedApp: 'info',
+        expectedApp: 'knowfeed',
         fetchImpl,
       }),
     ).resolves.toBeNull()
@@ -92,10 +92,10 @@ describe('loadBrowserSession', () => {
     const fetchImpl = vi.fn<typeof fetch>().mockResolvedValue(Response.json(payload))
     await expect(
       loadBrowserSession({
-        backendUrl: 'http://info-backend:8000',
+        backendUrl: 'http://knowfeed-backend:8000',
         cookieHeader: '',
         correlationId: 'correlation-1234',
-        expectedApp: 'info',
+        expectedApp: 'knowfeed',
         fetchImpl,
       }),
     ).rejects.toMatchObject({ code: 'contract_invalid' } satisfies Partial<WebBackendError>)
@@ -105,10 +105,10 @@ describe('loadBrowserSession', () => {
     const fetchImpl = vi.fn<typeof fetch>().mockResolvedValue(new Response(null, { status: 503 }))
     await expect(
       loadBrowserSession({
-        backendUrl: 'http://info-backend:8000',
+        backendUrl: 'http://knowfeed-backend:8000',
         cookieHeader: '',
         correlationId: 'correlation-1234',
-        expectedApp: 'info',
+        expectedApp: 'knowfeed',
         fetchImpl,
       }),
     ).rejects.toMatchObject({ code: 'backend_unavailable' } satisfies Partial<WebBackendError>)

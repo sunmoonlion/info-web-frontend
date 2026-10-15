@@ -1,5 +1,5 @@
 {
-  "name": "info-web-frontend",
+  "name": "knowfeed-web-frontend",
   "version": "2.0.0",
   "private": true,
   "packageManager": "pnpm@10.24.0",

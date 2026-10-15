@@ -5,8 +5,8 @@ import { PlatformProviders } from '@/components/platform/providers'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'info App',
-  description: 'info web application',
+  title: 'knowfeed App',
+  description: 'knowfeed web application',
 }
 
 export default async function RootLayout({

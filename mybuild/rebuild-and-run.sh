@@ -3,8 +3,8 @@
 
 set -e
 
-IMAGE_NAME="info-web-frontend:1.0.0"
-CONTAINER_NAME="info-web-frontend"
+IMAGE_NAME="knowfeed-web-frontend:1.0.0"
+CONTAINER_NAME="knowfeed-web-frontend"
 
 echo "🛑 停止并删除旧容器..."
 docker stop $CONTAINER_NAME 2>/dev/null || true
