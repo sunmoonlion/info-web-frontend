@@ -6,7 +6,7 @@ export const previewConfig = {
   apps: {
     knowfeed: 'http://localhost:3110',
     knowbase: 'http://localhost:3120',
-    investment: 'http://localhost:3100',
+    knowbench: 'http://localhost:3100',
   },
   // 账 56 起用户侧没有页面：不带人去别处，也没有人带到这里
   targets: [],

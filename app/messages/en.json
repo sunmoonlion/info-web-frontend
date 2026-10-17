@@ -85,6 +85,6 @@
   "shell": {
     "brand": "Data intake",
     "nothingHere": "There is nothing for you to see here.",
-    "hint": "Which companies to collect is decided in the admin console; what you could not find in investment, we can see."
+    "hint": "Which companies to collect is decided in the admin console; what you could not find in knowbench, we can see."
   }
 }
