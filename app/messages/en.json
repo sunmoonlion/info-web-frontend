@@ -84,7 +84,249 @@
   "Dashboard": {},
   "shell": {
     "brand": "Data intake",
-    "nothingHere": "There is nothing for you to see here.",
-    "hint": "Which companies to collect is decided in the admin console; what you could not find in knowbench, we can see."
+    "nothingHere": "Request data, follow your requests and manage subscriptions here.",
+    "hint": "Say what you need and we fetch it; what we fetch goes into your knowbase library."
+  },
+  "supply": {
+    "nav": {
+      "new": "Request data",
+      "demands": "My requests",
+      "subscriptions": "Subscriptions"
+    },
+    "loading": "Loading…",
+    "failed": "Could not load. Try again later.",
+    "submitting": "Submitting…",
+    "readings": {
+      "label": "Readings wanted",
+      "original": "Original file",
+      "text": "Body text",
+      "pages": "Text by page",
+      "table": "Extracted tables"
+    },
+    "docClass": {
+      "disclosure": "Disclosures",
+      "policy": "Laws and policies",
+      "statistics": "Statistics",
+      "other": "Other"
+    },
+    "docType": {
+      "annual_report": "Annual report",
+      "semiannual_report": "Semi-annual report",
+      "q1_report": "Q1 report",
+      "q3_report": "Q3 report",
+      "interim_announcement": "Interim announcement",
+      "prospectus": "Prospectus",
+      "listing_announcement": "Listing announcement",
+      "ir_activity": "Investor relations record",
+      "ir_qa": "Investor Q&A",
+      "regulatory_letter": "Regulatory letter",
+      "law": "Law",
+      "administrative_regulation": "Administrative regulation",
+      "departmental_rule": "Departmental rule",
+      "local_regulation": "Local regulation",
+      "judicial_interpretation": "Judicial interpretation",
+      "normative_document": "Normative document",
+      "policy_interpretation": "Policy interpretation",
+      "business_rule": "Business rule",
+      "statistical_bulletin": "Statistical bulletin",
+      "statistical_data": "Statistical data",
+      "census": "Census",
+      "webpage": "Web page",
+      "other_text": "Other text",
+      "other_table": "Other table"
+    },
+    "status": {
+      "accepted": "Accepted",
+      "fetching": "Fetching",
+      "ready": "Ready",
+      "partial": "Partly ready",
+      "failed": "Failed",
+      "unsatisfiable": "Cannot be met",
+      "cancelled": "Cancelled",
+      "timeout": "Timed out"
+    },
+    "reason": {
+      "no_channel": "We cannot collect this kind of data yet",
+      "channel_has_none": "The channel does not have this one",
+      "channel_disabled": "The channel was disabled",
+      "site_pending": "The site is under review; we fetch once it passes",
+      "site_rejected": "The site did not pass review",
+      "site_review_expired": "Nobody reviewed the site in time",
+      "readings_incomplete": "The original arrived; some readings were not made",
+      "cancelled": "Cancelled",
+      "conditions_unmet": "The supply conditions are not met",
+      "robots_disallowed": "The site does not allow robots to fetch this page",
+      "off_site": "The URL is not on the registered site",
+      "render_unavailable": "This page needs rendering and the render service is not on",
+      "subscription_ended": "The subscription ended or was cancelled",
+      "deadline_passed": "Not done by the deadline",
+      "catalog_site": "Ask for this site by description (reports, announcements), not by URL",
+      "awaiting_knowbase": "knowbase cannot yet store data collected for you; not delivered for now",
+      "url_rejected": "This URL cannot be fetched (unresolvable or not allowed)",
+      "subject_required": "This page has no subject, so it cannot be filed as a public disclosure",
+      "subscription_expired": "The subscription expired"
+    },
+    "proposer": {
+      "user": "You",
+      "app": "An app on your behalf",
+      "expert": "An expert while running",
+      "subscription": "A subscription"
+    },
+    "new": {
+      "title": "Title (optional)",
+      "lead": "Say what you need; we fetch it into your knowbase library. Submitting confirms it.",
+      "tabs": {
+        "description": "By description",
+        "url": "By URL",
+        "topic": "Find by topic"
+      },
+      "subjects": "Subjects",
+      "subjectsHint": "Security codes with market (e.g. 600519.SH) or organization codes (e.g. org:kb-xxx); one per line",
+      "badSubjects": "Unrecognized subjects: {list}",
+      "lookup": "Look up a security",
+      "lookupHint": "Type a company name or code; click a result to add it",
+      "docType": "Type",
+      "periodStart": "Period from",
+      "periodEnd": "Period to",
+      "periodHint": "Report period for periodic reports, a disclosure window otherwise; empty means the last year",
+      "urls": "URLs",
+      "urlsHint": "Public pages, no login; one per line",
+      "badUrls": "Unrecognized URLs: {list}",
+      "followLinks": "Also fetch the files it links to directly (same site, one level, at most {max})",
+      "publicPage": "I confirm these are public pages that need no login",
+      "deadline": "Needed by",
+      "note": "Note (optional)",
+      "check": "Check availability first",
+      "submit": "Submit",
+      "checked": "Pre-match result",
+      "submitted": "Submitted. Follow it under My requests.",
+      "alreadyReady": "{count} items are already in your knowbase; no need to fetch.",
+      "allReady": "All of these are already in your knowbase; no need to fetch.",
+      "prematch": {
+        "available": "Available",
+        "unavailable": "Not available",
+        "site_pending": "Site under review",
+        "conditions_unmet": "Conditions not met"
+      },
+      "eta": "About {minutes} min"
+    },
+    "topic": {
+      "topic": "Topic",
+      "topicHint": "A sentence or a few keywords",
+      "sites": "Only search these sites (optional)",
+      "sitesHint": "One per line, e.g. www.stats.gov.cn",
+      "wanted": "How many candidates",
+      "start": "Search",
+      "searching": "Searching…",
+      "ended": "Ended",
+      "noChannel": "No approved site search covers these sites yet.",
+      "expiresAt": "Candidates valid until {at}",
+      "pick": "Fetch the picked ones",
+      "none": "No candidates found.",
+      "site": {
+        "approved": "Site approved",
+        "pending": "Site under review",
+        "unregistered": "Site not registered; it is reviewed before fetching",
+        "rejected": "Site did not pass review",
+        "invalid": "Invalid URL"
+      },
+      "license": {
+        "self": "Owner only",
+        "via_expert": "Usable via experts",
+        "sale": "For sale"
+      },
+      "picked": "Submitted {count} picked candidates."
+    },
+    "demands": {
+      "title": "My requests",
+      "lead": "Every request in your name, whether you, an app, an expert or a subscription made it.",
+      "none": "No requests yet.",
+      "createdAt": "Made {at}",
+      "deadline": "Needed by {at}",
+      "cancel": "Cancel this request",
+      "retry": "Try again",
+      "materials": "{count} materials",
+      "notTaken": "{count} links not fetched",
+      "retried": "Tried again; the new item is in the list.",
+      "retryOf": "Retry"
+    },
+    "subscriptions": {
+      "title": "Subscriptions",
+      "lead": "Say it once; new items are fetched automatically. Creating, renewing and cancelling record your standing consent in knowbase.",
+      "none": "No subscriptions yet.",
+      "create": "Subscribe",
+      "by": "Subscribe to",
+      "byOption": {
+        "description": "A description (subjects and types, new ones from now on)",
+        "url": "A URL (column page, RSS)",
+        "topic": "A topic (you pick candidates each round)"
+      },
+      "endsOn": "Ends on (at most a year)",
+      "every": "Check every",
+      "everyOption": {
+        "6": "6 hours",
+        "24": "Day",
+        "168": "Week"
+      },
+      "monthlyCap": "At most per month",
+      "purpose": "Purpose",
+      "skipBacklog": "Do not catch up next month on what went over this month's cap",
+      "status": {
+        "active": "Active",
+        "paused": "Paused",
+        "expired": "Expired",
+        "cancelled": "Cancelled",
+        "disabled": "Disabled"
+      },
+      "statusReason": {
+        "consent_withdrawn": "You withdrew the standing consent in knowbase"
+      },
+      "renewDue": "Ending soon; renew if you want to keep it.",
+      "pause": "Pause",
+      "resume": "Resume",
+      "cancel": "Cancel",
+      "renew": "Renew until",
+      "doRenew": "Renew",
+      "rounds": "Rounds",
+      "noRounds": "Not checked yet.",
+      "round": {
+        "at": "Checked",
+        "found": "Found",
+        "taken": "Taken",
+        "overCap": "Over cap"
+      },
+      "showRounds": "Show rounds",
+      "hideRounds": "Hide",
+      "candidates": "This round's candidates",
+      "lastChecked": "Last checked {at}",
+      "until": "Until {date}"
+    },
+    "errors": {
+      "generic": "That did not work. Try again later.",
+      "deadline_required": "Say when you need it by.",
+      "deadline_invalid": "The deadline cannot be in the past.",
+      "user_token_app_denied": "knowbase does not yet let knowfeed record confirmations for you; this step is unavailable for now.",
+      "reauth_required": "Your sign-in expired. Sign in again.",
+      "knowbase_unconfigured": "knowbase is not connected.",
+      "quota_rate": "Too many requests in the last hour. Try later.",
+      "quota_open_demands": "Too many open requests. Wait for some to finish.",
+      "quota_monthly": "This month's quota of new documents is used up.",
+      "quota_subscriptions": "You have reached the subscription limit.",
+      "no_watch_channel": "No channel can watch this subscription for new items.",
+      "subject_unsupported": "Unrecognized subject code.",
+      "subject_type_mismatch": "Organization codes go with laws, policies and statistics only.",
+      "url_invalid": "Invalid URL.",
+      "ends_on_invalid": "The end date must be after today and within a year.",
+      "item_not_retryable": "Only failed, timed out or unmet items can be retried.",
+      "search_not_ready": "These candidates expired or were used.",
+      "subscription_not_active": "The subscription is not active.",
+      "consent_withdrawn": "The subscription's consent was withdrawn.",
+      "idempotency_key_reused": "This submission differs from the last one; refresh and submit again.",
+      "public_declaration_required": "Confirm first that these are public pages that need no login.",
+      "submission_in_progress": "The same submission is still being processed; check back shortly.",
+      "quota_search_rate": "Too many searches in the last hour. Try later.",
+      "quota_open_searches": "Too many searches running. Wait for results first.",
+      "subscription_changed": "The subscription just changed; refresh and renew again."
+    }
   }
 }

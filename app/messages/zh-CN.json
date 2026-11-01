@@ -84,7 +84,249 @@
   "Dashboard": {},
   "shell": {
     "brand": "数据入库",
-    "nothingHere": "这里没有给你看的页面。",
-    "hint": "要采哪家公司的数据，由我们在管理后台发起；你在 knowbench 里查不到的，我们会看到。"
+    "nothingHere": "在这里提需求、看需求、管订阅。",
+    "hint": "要的资料说清楚，我们去取；取到的进你在 knowbase 的资料。"
+  },
+  "supply": {
+    "nav": {
+      "new": "提需求",
+      "demands": "我的需求",
+      "subscriptions": "订阅"
+    },
+    "loading": "加载中…",
+    "failed": "没取到，稍后再试。",
+    "submitting": "提交中…",
+    "readings": {
+      "label": "要的读法",
+      "original": "原件",
+      "text": "正文文字",
+      "pages": "按页文字",
+      "table": "抽好的表"
+    },
+    "docClass": {
+      "disclosure": "公告",
+      "policy": "政策法规",
+      "statistics": "统计数据",
+      "other": "其他"
+    },
+    "docType": {
+      "annual_report": "年报",
+      "semiannual_report": "半年报",
+      "q1_report": "一季报",
+      "q3_report": "三季报",
+      "interim_announcement": "临时公告",
+      "prospectus": "招股书",
+      "listing_announcement": "上市公告书",
+      "ir_activity": "投资者关系活动记录",
+      "ir_qa": "互动问答",
+      "regulatory_letter": "监管函件",
+      "law": "法律",
+      "administrative_regulation": "行政法规",
+      "departmental_rule": "部门规章",
+      "local_regulation": "地方性法规",
+      "judicial_interpretation": "司法解释",
+      "normative_document": "规范性文件",
+      "policy_interpretation": "政策解读",
+      "business_rule": "业务规则",
+      "statistical_bulletin": "统计公报",
+      "statistical_data": "统计数据",
+      "census": "普查",
+      "webpage": "网页",
+      "other_text": "其他文本",
+      "other_table": "其他表格"
+    },
+    "status": {
+      "accepted": "已受理",
+      "fetching": "取数中",
+      "ready": "已就绪",
+      "partial": "部分就绪",
+      "failed": "失败",
+      "unsatisfiable": "无法满足",
+      "cancelled": "已取消",
+      "timeout": "超时"
+    },
+    "reason": {
+      "no_channel": "这类数据我们还取不到",
+      "channel_has_none": "渠道里没有这一份",
+      "channel_disabled": "渠道停用了",
+      "site_pending": "这个网站还在审核，审过就取",
+      "site_rejected": "这个网站审核没通过",
+      "site_review_expired": "网站审核超过时限没人审",
+      "readings_incomplete": "原件到了，有的读法没做成",
+      "cancelled": "已取消",
+      "conditions_unmet": "当前供给条件不满足",
+      "robots_disallowed": "网站不让程序取这一页",
+      "off_site": "网址不在登记的网站上",
+      "render_unavailable": "这一页要渲染才看得到，渲染服务还没开",
+      "subscription_ended": "订阅到期或撤了",
+      "deadline_passed": "过了最晚时间还没办完",
+      "catalog_site": "这个网站按描述要（如年报、公告），不按网址取",
+      "awaiting_knowbase": "knowbase 还没开好「为你采集」的存放，暂时交不了",
+      "url_rejected": "这个网址取不了（解析不了或地址不允许）",
+      "subject_required": "这一页没有主体，进不了公开披露",
+      "subscription_expired": "订阅到期了"
+    },
+    "proposer": {
+      "user": "本人提的",
+      "app": "应用代提",
+      "expert": "专家运行中提",
+      "subscription": "订阅生成"
+    },
+    "new": {
+      "title": "预填标题（选填）",
+      "lead": "说清楚要什么，我们去取，取到的进你在 knowbase 的资料。提交即确认。",
+      "tabs": {
+        "description": "按描述",
+        "url": "给网址",
+        "topic": "按主题找"
+      },
+      "subjects": "主体",
+      "subjectsHint": "证券代码含市场（如 600519.SH），或机构编号（如 org:kb-xxx）；一行一个",
+      "badSubjects": "认不出的主体：{list}",
+      "lookup": "按名字查证券",
+      "lookupHint": "输入公司名或代码，点结果加进主体",
+      "docType": "类型",
+      "periodStart": "期间从",
+      "periodEnd": "期间到",
+      "periodHint": "定期报告写报告期，其余写披露时间窗；不写取最近一年",
+      "urls": "网址",
+      "urlsHint": "公开页面、不用登录；一行一个",
+      "badUrls": "认不出的网址：{list}",
+      "followLinks": "连它直接链到的文件一起取（同一网站、只往下一层，最多 {max} 份）",
+      "publicPage": "我确认这些是公开页面、不用登录",
+      "deadline": "最晚什么时候要",
+      "note": "说明（选填）",
+      "check": "先看能不能取",
+      "submit": "提交",
+      "checked": "预切合结果",
+      "submitted": "已提交，进度在「我的需求」看。",
+      "alreadyReady": "{count} 项你在 knowbase 已经有了，不必再取。",
+      "allReady": "这些你在 knowbase 都已经有了，不必再取。",
+      "prematch": {
+        "available": "能取",
+        "unavailable": "取不到",
+        "site_pending": "网站待审",
+        "conditions_unmet": "不满足条件"
+      },
+      "eta": "预计 {minutes} 分钟内"
+    },
+    "topic": {
+      "topic": "主题",
+      "topicHint": "一句话或几个关键词",
+      "sites": "只在这些网站里找（选填）",
+      "sitesHint": "一行一个，如 www.stats.gov.cn",
+      "wanted": "要几个候选",
+      "start": "开始找",
+      "searching": "正在找…",
+      "ended": "已结束",
+      "noChannel": "还没有审过的站内搜索能搜这些网站。",
+      "expiresAt": "候选 {at} 前有效",
+      "pick": "取勾选的",
+      "none": "没找到候选。",
+      "site": {
+        "approved": "网站已审过",
+        "pending": "网站待审",
+        "unregistered": "网站还没登记，取时会先审",
+        "rejected": "网站审核没通过",
+        "invalid": "网址不对"
+      },
+      "license": {
+        "self": "只许本人用",
+        "via_expert": "可以经专家给别人用",
+        "sale": "可以出售"
+      },
+      "picked": "已提交勾选的 {count} 条。"
+    },
+    "demands": {
+      "title": "我的需求",
+      "lead": "你名下的全部需求，不论是自己提的还是应用、专家、订阅代提的。",
+      "none": "还没有需求。",
+      "createdAt": "提于 {at}",
+      "deadline": "最晚 {at}",
+      "cancel": "取消这张单",
+      "retry": "再试一次",
+      "materials": "{count} 份资料",
+      "notTaken": "还有 {count} 个链接没取",
+      "retried": "已再试一次，新的一项在列表里。",
+      "retryOf": "再试一次"
+    },
+    "subscriptions": {
+      "title": "订阅",
+      "lead": "一次说好，以后有新的就自动取。建、续、撤都会在 knowbase 留下你的长期范围同意。",
+      "none": "还没有订阅。",
+      "create": "建订阅",
+      "by": "订阅什么",
+      "byOption": {
+        "description": "按描述（主体与类型，往后新发的）",
+        "url": "按网址（栏目页、RSS）",
+        "topic": "按主题（每轮候选你来勾）"
+      },
+      "endsOn": "截止日（最长一年）",
+      "every": "多久查一次",
+      "everyOption": {
+        "6": "每 6 小时",
+        "24": "每天",
+        "168": "每周"
+      },
+      "monthlyCap": "每月最多取几份",
+      "purpose": "用途",
+      "skipBacklog": "当月超额没取的，下月不补",
+      "status": {
+        "active": "生效中",
+        "paused": "暂停",
+        "expired": "已到期",
+        "cancelled": "已取消",
+        "disabled": "被停用"
+      },
+      "statusReason": {
+        "consent_withdrawn": "你在 knowbase 撤了范围同意"
+      },
+      "renewDue": "快到期了，要续就续订。",
+      "pause": "暂停",
+      "resume": "恢复",
+      "cancel": "撤订阅",
+      "renew": "续订到",
+      "doRenew": "续订",
+      "rounds": "每轮记录",
+      "noRounds": "还没查过。",
+      "round": {
+        "at": "查的时间",
+        "found": "发现",
+        "taken": "取了",
+        "overCap": "超额没取"
+      },
+      "showRounds": "看每轮",
+      "hideRounds": "收起",
+      "candidates": "本轮候选",
+      "lastChecked": "上次查 {at}",
+      "until": "到 {date}"
+    },
+    "errors": {
+      "generic": "没办成，稍后再试。",
+      "deadline_required": "请写最晚什么时候要。",
+      "deadline_invalid": "最晚时间不能早于现在。",
+      "user_token_app_denied": "knowbase 还没开放 knowfeed 替你记确认，这一步暂时做不了。",
+      "reauth_required": "登录过期了，请重新登录。",
+      "knowbase_unconfigured": "knowbase 还没接上。",
+      "quota_rate": "一小时内提得太多了，稍后再提。",
+      "quota_open_demands": "没办完的需求太多了，等办完一些再提。",
+      "quota_monthly": "本月可新取的份数用完了。",
+      "quota_subscriptions": "订阅条数到上限了。",
+      "no_watch_channel": "现在没有渠道能按这个订阅去看新的。",
+      "subject_unsupported": "主体编号认不出。",
+      "subject_type_mismatch": "机构编号只配政策法规、统计数据。",
+      "url_invalid": "网址不对。",
+      "ends_on_invalid": "截止日要在一年以内、晚于今天。",
+      "item_not_retryable": "只有失败、超时、无法满足的能再试。",
+      "search_not_ready": "这次找的候选已经过期或用过了。",
+      "subscription_not_active": "订阅不在生效中。",
+      "consent_withdrawn": "订阅的范围同意已撤。",
+      "idempotency_key_reused": "这次提交和上一次不一样，请刷新后再提。",
+      "public_declaration_required": "请先确认这些是公开页面、不用登录。",
+      "submission_in_progress": "同一次提交还在办，稍等再看。",
+      "quota_search_rate": "一小时内找得太多了，稍后再找。",
+      "quota_open_searches": "正在找的太多了，等出了结果再找。",
+      "subscription_changed": "订阅刚被改过，刷新后再续。"
+    }
   }
 }
